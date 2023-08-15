@@ -10,7 +10,7 @@
         "entity_id": "ERP_F1_000",
         "landing_path": "s3://apa-ingestion-data/A_PM",
         "special_fields": [],
-        "table_name": "A_PM"
+        "table_name": "A_PM",
         "column_mapping": []
       },
       {
@@ -18,7 +18,7 @@
         "entity_id": "ERP_F1_001",
         "landing_path": "s3://apa-ingestion-data/AMCREWLABOR",
         "special_fields": [],
-        "table_name": "AMCREWLABOR"
+        "table_name": "AMCREWLABOR",
         "column_mapping": []
       },
       {
@@ -26,7 +26,7 @@
         "entity_id": "ERP_F1_002",
         "landing_path": "s3://apa-ingestion-data/COURSES_DETAILS",
         "special_fields": [{field_id: id, classification: APA-Protected, frequent_processing: Yes}],
-        "table_name": "COURSES_DETAILS"
+        "table_name": "COURSES_DETAILS",
         "column_mapping": [{old_column_name: course_name , new_column_name: name}]
       }
 
