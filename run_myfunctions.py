@@ -7,7 +7,7 @@ columnValue = "1"
 schemaName = "schema1"
 
 # If the table exists in the specified database...
-if tableExists(tableName, dbName):
+if tableExists(tableName, dbName,schemaName):
 
   df = spark.sql(f"SELECT * FROM {dbName}.{schemaName}.{tableName}")
 

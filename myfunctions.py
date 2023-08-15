@@ -10,7 +10,7 @@ spark = SparkSession.builder \
                     .getOrCreate()
 
 # Does the specified table exist in the specified database?
-def tableExists(tableName, dbName):
+def tableExists(tableName, dbName,schemaName):
   return spark.catalog.tableExists(f"{dbName}.{schemaName}.{tableName}")
 
 # Does the specified column exist in the given DataFrame?
