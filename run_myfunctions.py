@@ -1,15 +1,14 @@
 from test.myfunctions import *
 
 tableName   = "courses_details"
-dbName      = "main"
+dbName      = "main.schema1"
 columnName  = "id"
 columnValue = "1"
-schemaName = "schema1"
 
 # If the table exists in the specified database...
-if tableExists(tableName, dbName,schemaName):
+if tableExists(tableName, dbName):
 
-  df = spark.sql(f"SELECT * FROM {dbName}.{schemaName}.{tableName}")
+  df = spark.sql(f"SELECT * FROM {dbName}.{tableName}")
 
   # And the specified column exists in that table...
   if columnExists(df, columnName):
