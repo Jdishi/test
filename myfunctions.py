@@ -19,15 +19,19 @@ spark = SparkSession.builder \
 def tableExists(tableName, dbName):
     try:
         df = spark.sql(f"SELECT * FROM {dbName}.{tableName}")
+        print("Table exists")
         return True
     except:
+        print("Table DOES NOT exist")
         return False
 
 # Does the specified column exist in the given DataFrame?
 def columnExists(dataFrame, columnName):
   if columnName in dataFrame.columns:
-    return True
+    print("Column exist")
+    return True 
   else:
+    print("Column DOES NOT exist")
     return False
 
 # How many rows are there for the specified value in the specified column
