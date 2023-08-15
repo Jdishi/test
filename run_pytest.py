@@ -4,7 +4,7 @@ import pytest
 import os
 import sys
 
-repo_name = "/Repos/dishi.jain@versent.com.au/test"
+repo_name = "test"
 
 # Get the path to this notebook, for example "/Workspace/Repos/{username}/{repo-name}".
 notebook_path = dbutils.notebook.entry_point.getDbutils().notebook().getContext().notebookPath().get()
