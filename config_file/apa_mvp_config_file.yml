@@ -9,7 +9,7 @@
         "classification": "confidential",
         "entity_id": "ERP_F1_000",
         "landing_path": "s3://apa-ingestion-data/A_PM",
-        "special_fields": [],
+        "special_fields": [{field_id: pm_id, classification: APA-Protected, frequent_processing: Yes}],
         "table_name": "A_PM",
         "column_mapping": []
       },
