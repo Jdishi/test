@@ -32,8 +32,4 @@ def columnExists(dataFrame, columnName):
 
 # How many rows are there for the specified value in the specified column
 # in the given DataFrame?
-def numRowsInColumnForValue(dataFrame, columnName, columnValue):
-  df = dataFrame.filter(col(columnName) == columnValue)
-
-  return df.count()
 

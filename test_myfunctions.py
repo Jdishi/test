@@ -1,13 +1,15 @@
+%pip install pyyaml
+
 import pytest
 import pyspark
+import yaml
 from myfunctions import *
 from pyspark.sql import SparkSession
 from pyspark.sql.types import StructType, StructField, IntegerType, FloatType, StringType
 
 
 dbName      = "main.schema1"
-columnName  = "id"
-columnValue = "1"
+
 
 
 
@@ -29,16 +31,27 @@ spark = SparkSession.builder \
 
 # Does the table exist?
 def test_tableExists():
+
+  path_name = "/Workspace/Repos/dishi.jain@versent.com.au/test/config_file/apa_mvp_config_file.yml"
+
+  with open(path_name,"r") as file:
+     file_contents = file.read()
+  data_list = list(yaml.safe_load_all(file_contents))
+
+  for sources in data_list:
+    for table_details in sources['source_1']['tables']:
+      if len(table_details['special_fields']) != 0 and len(table_details['column_mapping']) != 0:
+        tableName = table_details['table_name']
+        assert tableExists(tableName, dbName) is True
+
+
+
   
-  assert tableExists(tableName, dbName) is True
 
 
 
 # Does the column exist?
 def test_columnExists():
-  df = 
+
   assert columnExists(df, columnName) is True
 
-# Is there at least one row for the value in the specified column?
-def test_numRowsInColumnForValue():
-  assert numRowsInColumnForValue(df, columnName, columnValue) > 0
