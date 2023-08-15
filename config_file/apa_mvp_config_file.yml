@@ -18,7 +18,7 @@
         "entity_id": "ERP_F1_001",
         "landing_path": "s3://apa-ingestion-data/AMCREWLABOR",
         "special_fields": [{field_id: test_tfn, classification: APA-Protected, frequent_processing: No}],
-        "table_name": "AMCREWLABOR",
+        "table_name": "AMCREWLABOR_test",
         "column_mapping": []
       },
       {
