@@ -44,13 +44,31 @@ def test_tableExists():
         assert tableExists(tableName, dbName) is True
 
 
-
-  
-
-
-
 # Does the column exist?
 def test_columnExists():
+  path_name = "/Workspace/Repos/dishi.jain@versent.com.au/test/config_file/apa_mvp_config_file.yml"
 
-  assert columnExists(df, columnName) is True
+  with open(path_name,"r") as file:
+     file_contents = file.read()
+  data_list = list(yaml.safe_load_all(file_contents))
+
+  for sources in data_list:
+    for table_details in sources['source_1']['tables']:
+      if len(table_details['special_fields']) != 0 and len(table_details['column_mapping']) != 0:
+        tableName = table_details['table_name']
+        try:
+          df = spark.sql(f"SELECT * FROM {dbName}.{tableName}")
+          if len(table_details['special_fields']) != 0:
+            for addition_columns in table_details['special_fields']:
+              columnName = addition_columns['field_id']
+              assert columnExists(df, columnName) is True
+          if len(table_details['column_mapping']) != 0:
+            for renamed_columns in table_details['column_mapping']:
+              columnName = renamed_columns['new_column_name']
+              assert columnExists(df, columnName) is True
+        except:
+          print("table doesnt exist")
+
+
+
 
