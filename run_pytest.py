@@ -21,7 +21,7 @@ print(os.getcwd())
 sys.dont_write_bytecode = True
 
 # Run pytest.
-retcode = pytest.main([".", "-v", "-p", "no:cacheprovider"])
+retcode = pytest.main([".", "-v", "-p", "no:cacheprovider","-s"])
 
 # Fail the cell execution if there are any test failures.
 assert retcode == 0, "The pytest invocation failed. See the log for details."
