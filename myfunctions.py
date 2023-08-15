@@ -1,4 +1,4 @@
-
+%pip install pyyaml
 
 import pyspark
 from pyspark.sql import SparkSession
