@@ -19,24 +19,8 @@ spark = SparkSession.builder \
 # Create fake data for the unit tests to run against.
 # In general, it is a best practice to not run unit tests
 # against functions that work with data in production.
-schema = StructType([ \
-  StructField("_c0",     IntegerType(), True), \
-  StructField("carat",   FloatType(),   True), \
-  StructField("cut",     StringType(),  True), \
-  StructField("color",   StringType(),  True), \
-  StructField("clarity", StringType(),  True), \
-  StructField("depth",   FloatType(),   True), \
-  StructField("table",   IntegerType(), True), \
-  StructField("price",   IntegerType(), True), \
-  StructField("x",       FloatType(),   True), \
-  StructField("y",       FloatType(),   True), \
-  StructField("z",       FloatType(),   True), \
-])
 
-data = [ (1, 0.23, "Ideal",   "E", "SI2", 61.5, 55, 326, 3.95, 3.98, 2.43 ), \
-         (2, 0.21, "Premium", "E", "SI1", 59.8, 61, 326, 3.89, 3.84, 2.31 ) ]
 
-#df = spark.createDataFrame(data, schema)
 df = spark.sql(f"SELECT * FROM {dbName}.{tableName}")
 
 # Does the table exist?
