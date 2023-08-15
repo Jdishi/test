@@ -1,3 +1,5 @@
+%pip install pyyaml
+
 from myfunctions import *
 import yaml
 
