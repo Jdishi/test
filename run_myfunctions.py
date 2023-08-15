@@ -13,7 +13,7 @@ data_list = list(yaml.safe_load_all(file_contents))
 
 for sources in data_list:
     for table_details in sources['source_1']['tables']:
-        if len(table_details['special_fields']) != 0 and len(table_details['column_mapping']) != 0:
+        if len(table_details['special_fields']) != 0 or len(table_details['column_mapping']) != 0:
             tableName = table_details['table_name']
 
             if tableExists(tableName, dbName):
