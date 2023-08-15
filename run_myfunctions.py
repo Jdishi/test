@@ -4,8 +4,6 @@ from myfunctions import *
 import yaml
 
 dbName      = "main.schema1"
-columnName  = "name"
-columnValue = "Computer Science"
 
 path_name = "/Workspace/Repos/dishi.jain@versent.com.au/test/config_file/apa_mvp_config_file.yml"
 
@@ -21,14 +19,29 @@ for sources in data_list:
             if tableExists(tableName, dbName):
 
                 df = spark.sql(f"SELECT * FROM {dbName}.{tableName}")
+                if len(table_details['special_fields']) != 0:
+                    for addition_columns in table_details['special_fields']:
+                        columnName = addition_columns['field_id']
 
-                # And the specified column exists in that table...
-                if columnExists(df, columnName):
-                    # Then report the number of rows for the specified value in that column.
-                    numRows = numRowsInColumnForValue(df, columnName, columnValue)
+                    # And the specified column exists in that table...
+                        if columnExists(df, columnName):
+                        # Then report the number of rows for the specified value in that column.
+                            print(f"Column '{columnName}' exists in table '{tableName}' in schema (database) '{dbName}'.")
+                        else:
+                            print(f"Column '{columnName}' does not exist in table '{tableName}' in schema (database) '{dbName}'.")
+            
+                if len(table_details['column_mapping']) != 0:
+                    for renamed_columns in table_details['column_mapping']:
+                        columnName = renamed_columns['new_column_name']
 
-                    print(f"There are {numRows} rows in '{tableName}' where '{columnName}' equals '{columnValue}'.")
-                else:
-                    print(f"Column '{columnName}' does not exist in table '{tableName}' in schema (database) '{dbName}'.")
+                    # And the specified column exists in that table...
+                        if columnExists(df, columnName):
+                        # Then report the number of rows for the specified value in that column.
+                            print(f"Column '{columnName}' exists in table '{tableName}' in schema (database) '{dbName}' after rename.")
+                        else:
+                            print(f"Column '{columnName}' does not exist in table '{tableName}' in schema (database) '{dbName}'.")
+
+            
+            
             else:
                 print(f"Table '{tableName}' does not exist in schema (database) '{dbName}'.") 
