@@ -41,7 +41,12 @@ def test_tableExists():
     for table_details in sources['source_1']['tables']:
       if len(table_details['special_fields']) != 0 or len(table_details['column_mapping']) != 0:
         tableName = table_details['table_name']
+        if tableExists(tableName, dbName) is True:
+          print(f"table is {tableName} which is present")
+        else:
+          print(f"table is {tableName} which is NOT present")  
         assert tableExists(tableName, dbName) is True
+        
 
 
 # Does the column exist?
