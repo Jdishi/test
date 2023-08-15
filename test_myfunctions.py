@@ -1,4 +1,3 @@
-%pip install pyyaml
 
 import pytest
 import pyspark
