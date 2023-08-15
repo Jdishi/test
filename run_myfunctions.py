@@ -1,4 +1,4 @@
-from test.myfunctions import *
+from myfunctions import *
 
 tableName   = "courses_details"
 dbName      = "main.schema1"
