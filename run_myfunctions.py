@@ -1,6 +1,6 @@
 from myfunctions import *
 
-tableName   = "courses_details"
+
 dbName      = "main.schema1"
 columnName  = "id"
 columnValue = "1"

@@ -4,10 +4,13 @@ from myfunctions import *
 from pyspark.sql import SparkSession
 from pyspark.sql.types import StructType, StructField, IntegerType, FloatType, StringType
 
-tableName   = "courses_details"
+
 dbName      = "main.schema1"
 columnName  = "id"
 columnValue = "1"
+
+
+
 
 # Because this file is not a Databricks notebook, you
 # must create a Spark session. Databricks notebooks
