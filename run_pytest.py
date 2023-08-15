@@ -1,4 +1,5 @@
 %pip install pytest
+%pip install pyyaml
 
 import pytest
 import os

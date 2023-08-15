@@ -1,5 +1,6 @@
 import pytest
 import pyspark
+import yaml
 from myfunctions import *
 from pyspark.sql import SparkSession
 from pyspark.sql.types import StructType, StructField, IntegerType, FloatType, StringType

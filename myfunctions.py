@@ -1,7 +1,6 @@
-%pip install pyyaml
+
 
 import pyspark
-import yaml
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import col
 
