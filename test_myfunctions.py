@@ -62,10 +62,18 @@ def test_columnExists():
           if len(table_details['special_fields']) != 0:
             for addition_columns in table_details['special_fields']:
               columnName = addition_columns['field_id']
+              if columnExists(df, columnName):
+                print(f"Column {columnName} exist affter addition in table {tableName}")
+              else:
+                print(f"Column {columnName} DOES NOT exist affter addition in table {tableName}")
               assert columnExists(df, columnName) is True
           if len(table_details['column_mapping']) != 0:
             for renamed_columns in table_details['column_mapping']:
               columnName = renamed_columns['new_column_name']
+              if columnExists(df, columnName):
+                print(f"Column {columnName} exist affter rename in table {tableName}")
+              else:
+                print(f"Column {columnName} DOES NOT exist affter rename in table {tableName}")
               assert columnExists(df, columnName) is True
         except:
           pass
