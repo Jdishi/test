@@ -11,7 +11,11 @@ spark = SparkSession.builder \
 
 # Does the specified table exist in the specified database?
 def tableExists(tableName, dbName):
-  return spark.catalog.tableExists(f"{dbName}.{tableName}")
+  try:
+    df = spark.sql(f"SELECT * FROM {dbName}.{tableName}")
+    return True
+  except:
+    return False
 
 # Does the specified column exist in the given DataFrame?
 def columnExists(dataFrame, columnName):
