@@ -4,8 +4,8 @@ from myfunctions import *
 import yaml
 
 dbName      = "main.schema1"
-columnName  = "id"
-columnValue = "1"
+columnName  = "name"
+columnValue = "Computer Science"
 
 path_name = "/Workspace/Repos/dishi.jain@versent.com.au/test/config_file/apa_mvp_config_file.yml"
 
