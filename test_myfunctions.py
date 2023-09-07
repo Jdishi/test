@@ -9,7 +9,7 @@ import json
 import ast
 
 
-dbName      = "main.schema1"
+dbName      = "main"
 
 
 
@@ -44,11 +44,11 @@ def test_tableExists():
 
     for sources in data_list:
       for table_details in sources['source_1']['tables']:
-        if len(table_details['special_fields']) != 0 or len(table_details['column_mapping']) != 0:
-          tableName = table_details['table_name']
-          try:
+        tableName = table_details['table_name']
+        dbName = 'edp_dev_bronze.maximo_' + table_details['classification']
+        try:
             assert tableExists(tableName, dbName) is True
-          except:
+        except:
             pass
         
 
@@ -57,14 +57,13 @@ def test_tableExists():
 def test_columnExists():
     path_name = "/Workspace/Repos/dishi.jain@versent.com.au/test/config_file/APA_MVP_dlt_pipeline_config_file.json"
 
-    with open(path_name,"r") as file:
-      file_contents = file.read()
-    data_list = list(yaml.safe_load_all(file_contents))
+    data_dic = json.dumps(json.load(open(path_name)), indent=2)
+    data_list = [ast.literal_eval(data_dic)]
 
     for sources in data_list:
       for table_details in sources['source_1']['tables']:
-        if len(table_details['special_fields']) != 0 or len(table_details['column_mapping']) != 0:
           tableName = table_details['table_name']
+          dbName = 'edp_dev_bronze.maximo_' + table_details['classification']
           try:
             df = spark.sql(f"SELECT * FROM {dbName}.{tableName}")
             if len(table_details['special_fields']) != 0:
