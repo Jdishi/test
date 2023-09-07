@@ -31,7 +31,7 @@ spark = SparkSession.builder \
 # Does the table exist?
 def test_tableExists():
 
-  path_name = "/Workspace/Repos/dishi.jain@versent.com.au/test/config_file/apa_mvp_config_file.yml"
+  path_name = "/Workspace/Repos/dishi.jain@versent.com.au/test/config_file/APA_MVP_dlt_pipeline_config_file.json"
 
   with open(path_name,"r") as file:
      file_contents = file.read()
@@ -50,7 +50,7 @@ def test_tableExists():
 
 # Does the column exist?
 def test_columnExists():
-  path_name = "/Workspace/Repos/dishi.jain@versent.com.au/test/config_file/apa_mvp_config_file.yml"
+  path_name = "/Workspace/Repos/dishi.jain@versent.com.au/test/config_file/APA_MVP_dlt_pipeline_config_file.json"
 
   with open(path_name,"r") as file:
      file_contents = file.read()
