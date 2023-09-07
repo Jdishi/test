@@ -83,6 +83,7 @@ def test_columnExists():
                   print(f"Column {columnName} DOES NOT exist affter rename in table {tableName}")
                 assert columnExists(df, columnName) is True
           except:
+            print("Some other issue")
             pass
 
 
