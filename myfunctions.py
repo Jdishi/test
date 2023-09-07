@@ -32,6 +32,6 @@ def columnExists(dataFrame, columnName):
   else:
     return False
 
-# How many rows are there for the specified value in the specified column
-# in the given DataFrame?
+
+
 
