@@ -32,60 +32,59 @@ spark = SparkSession.builder \
 
 # Does the table exist?
 def test_tableExists():
+    path_name = "/Workspace/Repos/dishi.jain@versent.com.au/test/config_file/APA_MVP_dlt_pipeline_config_file.json"
 
-  path_name = "/Workspace/Repos/dishi.jain@versent.com.au/test/config_file/APA_MVP_dlt_pipeline_config_file.json"
+    data_dic = json.dumps(json.load(open(path_name)), indent=2)
+    data_list = [ast.literal_eval(data_dic)]
+    '''
+    with open(path_name,"r") as file:
+      file_contents = file.read()
+    data_list = list(yaml.safe_load_all(file_contents))
+    '''
 
-  data_dic = json.dumps(json.load(open(path_name)), indent=2)
-  data_list = [ast.literal_eval(data_dic)]
-  '''
-  with open(path_name,"r") as file:
-     file_contents = file.read()
-  data_list = list(yaml.safe_load_all(file_contents))
-  '''
-
-  for sources in data_list:
-    for table_details in sources['source_1']['tables']:
-      if len(table_details['special_fields']) != 0 or len(table_details['column_mapping']) != 0:
-        tableName = table_details['table_name']
-        try:
-          assert tableExists(tableName, dbName) is True
-        except:
-          pass
+    for sources in data_list:
+      for table_details in sources['source_1']['tables']:
+        if len(table_details['special_fields']) != 0 or len(table_details['column_mapping']) != 0:
+          tableName = table_details['table_name']
+          try:
+            assert tableExists(tableName, dbName) is True
+          except:
+            pass
         
 
 
 # Does the column exist?
 def test_columnExists():
-  path_name = "/Workspace/Repos/dishi.jain@versent.com.au/test/config_file/APA_MVP_dlt_pipeline_config_file.json"
+    path_name = "/Workspace/Repos/dishi.jain@versent.com.au/test/config_file/APA_MVP_dlt_pipeline_config_file.json"
 
-  with open(path_name,"r") as file:
-     file_contents = file.read()
-  data_list = list(yaml.safe_load_all(file_contents))
+    with open(path_name,"r") as file:
+      file_contents = file.read()
+    data_list = list(yaml.safe_load_all(file_contents))
 
-  for sources in data_list:
-    for table_details in sources['source_1']['tables']:
-      if len(table_details['special_fields']) != 0 or len(table_details['column_mapping']) != 0:
-        tableName = table_details['table_name']
-        try:
-          df = spark.sql(f"SELECT * FROM {dbName}.{tableName}")
-          if len(table_details['special_fields']) != 0:
-            for addition_columns in table_details['special_fields']:
-              columnName = addition_columns['field_id']
-              if columnExists(df, columnName):
-                print(f"Column {columnName} exist affter addition in table {tableName}")
-              else:
-                print(f"Column {columnName} DOES NOT exist affter addition in table {tableName}")
-              assert columnExists(df, columnName) is True
-          if len(table_details['column_mapping']) != 0:
-            for renamed_columns in table_details['column_mapping']:
-              columnName = renamed_columns['new_column_name']
-              if columnExists(df, columnName):
-                print(f"Column {columnName} exist affter rename in table {tableName}")
-              else:
-                print(f"Column {columnName} DOES NOT exist affter rename in table {tableName}")
-              assert columnExists(df, columnName) is True
-        except:
-          pass
+    for sources in data_list:
+      for table_details in sources['source_1']['tables']:
+        if len(table_details['special_fields']) != 0 or len(table_details['column_mapping']) != 0:
+          tableName = table_details['table_name']
+          try:
+            df = spark.sql(f"SELECT * FROM {dbName}.{tableName}")
+            if len(table_details['special_fields']) != 0:
+              for addition_columns in table_details['special_fields']:
+                columnName = addition_columns['field_id']
+                if columnExists(df, columnName):
+                  print(f"Column {columnName} exist affter addition in table {tableName}")
+                else:
+                  print(f"Column {columnName} DOES NOT exist affter addition in table {tableName}")
+                assert columnExists(df, columnName) is True
+            if len(table_details['column_mapping']) != 0:
+              for renamed_columns in table_details['column_mapping']:
+                columnName = renamed_columns['new_column_name']
+                if columnExists(df, columnName):
+                  print(f"Column {columnName} exist affter rename in table {tableName}")
+                else:
+                  print(f"Column {columnName} DOES NOT exist affter rename in table {tableName}")
+                assert columnExists(df, columnName) is True
+          except:
+            pass
 
 
 

@@ -27,10 +27,10 @@ def tableExists(tableName, dbName):
 
 # Does the specified column exist in the given DataFrame?
 def columnExists(dataFrame, columnName):
-  if columnName in dataFrame.columns:
-    return True 
-  else:
-    return False
+    if columnName in dataFrame.columns:
+        return True 
+    else:
+        return False
 
 
 
