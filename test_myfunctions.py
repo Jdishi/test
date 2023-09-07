@@ -5,6 +5,8 @@ import yaml
 from myfunctions import *
 from pyspark.sql import SparkSession
 from pyspark.sql.types import StructType, StructField, IntegerType, FloatType, StringType
+import json
+import ast
 
 
 dbName      = "main.schema1"
@@ -33,9 +35,13 @@ def test_tableExists():
 
   path_name = "/Workspace/Repos/dishi.jain@versent.com.au/test/config_file/APA_MVP_dlt_pipeline_config_file.json"
 
+  data_dic = json.dumps(json.load(open(path_name)), indent=2)
+  data_list = [ast.literal_eval(data_dic)]
+  '''
   with open(path_name,"r") as file:
      file_contents = file.read()
   data_list = list(yaml.safe_load_all(file_contents))
+  '''
 
   for sources in data_list:
     for table_details in sources['source_1']['tables']:
